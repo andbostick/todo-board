@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Aside from './components/Aside';
+import Main from './components/Main';
+
 
 function App() {
+
+  const [newTask, setNewTask] = useState('')
+  const [currentList, setCurrentList] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-row flex-wrap">
+      <Aside newTask={newTask} setNewTask={setNewTask}/>
+      <Main newTask={newTask} currentList={currentList} setCurrentList={setCurrentList}/>
     </div>
   );
 }
