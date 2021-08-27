@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react'
 import firebase from '../firebase/clientApp'
 import {useDocument} from 'react-firebase-hooks/firestore'
 
-function Card({ list, index, addTodoDocument, todo, id }) {
+function Card({ list, index, addTodoDocument, todo, id, db }) {
     
     const [data, loading, error] = useDocument(
         firebase.firestore().doc(`todo/${id}`)
     );
 
+
     const [addNote, setAddNote] = useState([])
     const [value, setValue] = useState('')
     
+    const deleteTodo = () => {
+        db.collection('todo').doc(id).delete();
+        
+    }
+
     const handleChange = (e) => {
         setValue(e.target.value)
     }
@@ -40,7 +46,7 @@ function Card({ list, index, addTodoDocument, todo, id }) {
                 <input type="text" value={value} onChange={handleChange}/>
                 <button type="submit">Enter</button>
                 </form>
-
+                <button onClick={deleteTodo}>Delete</button>
                 {addNote.map((note, index) => {
                     return (
                         <div key={index}>

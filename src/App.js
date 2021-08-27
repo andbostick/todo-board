@@ -34,7 +34,6 @@ function App() {
         }, { merge: true })
     }
 
-
   
   
 
@@ -48,7 +47,7 @@ function App() {
         <div className="flex flex-row flex-wrap">
         
         <Aside newTask={newTask} setNewTask={setNewTask} addTodoDocument={addTodoDocument}/>
-        <Main todos={todos} user={user}/>
+            <Main db={db} todos={todos} user={user}/>
         </div>
         </Route>
         

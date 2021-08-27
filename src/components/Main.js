@@ -3,15 +3,7 @@ import Card from './Card'
 import Auth from '../firebase/Auth';
 
 
-
-
-
-
-
-  
-
-
-function Main({user, todos}) {
+function Main({user, todos, db}) {
  
     return (
         <div>
@@ -23,7 +15,7 @@ function Main({user, todos}) {
                     {todos?.docs?.map((doc) => {
                         if (doc.data().id === user.uid) {
                             return (
-                                <Card key={doc.id} todo={doc.data().todo} id={doc.id} />
+                                <Card key={doc.id} todo={doc.data().todo} id={doc.id} db={db}/>
                             )
                         }
                         return (
