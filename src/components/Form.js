@@ -1,23 +1,34 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 
-function Form({ newTask, setNewTask }) {
-    
+
+function Form({label, addTodoDocument }) {
+
     const [value, setValue] = useState('');
     
+    
     const handleChange = (e) => {
+        if (e.target.value === '') {
+            return
+        }
         setValue(e.target.value)
         // console.log(value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setNewTask(value)
-        // console.log(newTask)
+        if (value === '') {
+            return
+        } else {
+            addTodoDocument(value)
+            setValue('')
+
+        }
+
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Create New Task Group</label>
+            <label>{label}</label>
             <input type="text" value={value} onChange={handleChange}/>
             <input type="submit" value="Submit" />
         </form>

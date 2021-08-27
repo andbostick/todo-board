@@ -1,7 +1,13 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import firebase from '../firebase/clientApp'
+import {useDocument} from 'react-firebase-hooks/firestore'
 
-function Card({ list, index }) {
+function Card({ list, index, addTodoDocument, todo, id }) {
     
+    const [data, loading, error] = useDocument(
+        firebase.firestore().doc(`todo/${id}`)
+    );
+
     const [addNote, setAddNote] = useState([])
     const [value, setValue] = useState('')
     
@@ -12,6 +18,7 @@ function Card({ list, index }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setAddNote([...addNote, value])
+        // addTodoDocument(value);
         setValue('')
     }
 
@@ -27,7 +34,7 @@ function Card({ list, index }) {
     return (
         <div className="w-96 min-h-96 bg-red-900 " key={index}>
             <div className="grid grid-flow-row auto-rows-max gap-1 justify-items-center">
-            <h1>{list}</h1>
+            <h1>{data?.data().todo}</h1>
             <form onSubmit={handleSubmit}>
                 <label>Add Note</label>
                 <input type="text" value={value} onChange={handleChange}/>
