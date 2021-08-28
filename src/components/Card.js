@@ -4,17 +4,28 @@ import {useDocument} from 'react-firebase-hooks/firestore'
 
 function Card({ list, index, addTodoDocument, todo, id, db }) {
     
+    const dbRef = db.collection('todo').doc(id)
     const [data, loading, error] = useDocument(
         firebase.firestore().doc(`todo/${id}`)
     );
 
-
-    const [addNote, setAddNote] = useState([])
     const [value, setValue] = useState('')
     
     const deleteTodo = () => {
-        db.collection('todo').doc(id).delete();
+        dbRef.delete();
         
+    }
+
+    const newNote = (note) => {
+        dbRef.update({
+            notes: firebase.firestore.FieldValue.arrayUnion(note)
+        })
+    }
+
+    const deleteNote = (note) => {
+        dbRef.update({
+            notes: firebase.firestore.FieldValue.arrayRemove(note)
+        })
     }
 
     const handleChange = (e) => {
@@ -23,19 +34,12 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setAddNote([...addNote, value])
+        newNote(value)
         // addTodoDocument(value);
         setValue('')
     }
 
-    const deleteNote = (index) => {
-      setAddNote(addNote.filter((e, i) => i !== index));
-      
-     }
 
-    useEffect(() => {
-        
-    },[])
     
     return (
         <div className="w-96 min-h-96 bg-red-900 " key={index}>
@@ -47,16 +51,16 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
                 <button type="submit">Enter</button>
                 </form>
                 <button onClick={deleteTodo}>Delete</button>
-                {addNote.map((note, index) => {
-                    return (
-                        <div key={index}>
-                    <ul>
-                        <li>{note}</li>
-                        </ul>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => deleteNote(index)}>Delete</button>
-                    </div>
-                    )
-                })}
+                <div>
+                    {data?.data()?.notes?.map((doc, index) => {
+                        return (
+                            <>
+                            <h3 key={index}>{doc}</h3>
+                                <button onClick={() => deleteNote(doc)}>delete note</button>
+                            </>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
