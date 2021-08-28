@@ -27,7 +27,7 @@ function Form({label, addTodoDocument }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='text-center' onSubmit={handleSubmit}>
             <label>{label}</label>
             <input type="text" value={value} onChange={handleChange}/>
             <input type="submit" value="Submit" />

@@ -6,11 +6,11 @@ import Auth from '../firebase/Auth';
 function Main({user, todos, db}) {
  
     return (
-        <div>
+        <div className=''>
             
             {!user && <Auth />}
             {user && (
-                <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-4 ">
+                <div className="grid md:grid-cols-3 sm:grid-cols-1 grid-flow-row justify-items-stretch items-start gap-4">
                     
                     {todos?.docs?.map((doc) => {
                         if (doc.data().id === user.uid) {

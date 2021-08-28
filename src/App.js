@@ -44,10 +44,10 @@ function App() {
         <SignInScreen />
         </Route>
         <Route path="/">
-        <div className="flex flex-row flex-wrap">
-        
+        <div className="bg-gray-100 grid m-4">
+            <button onClick={() => firebase.auth().signOut()}>SignOut</button>
         <Aside newTask={newTask} setNewTask={setNewTask} addTodoDocument={addTodoDocument}/>
-            <Main db={db} todos={todos} user={user}/>
+        <Main db={db} todos={todos} user={user}/>
         </div>
         </Route>
         

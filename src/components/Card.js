@@ -42,13 +42,13 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
 
     
     return (
-        <div className="w-96 min-h-96 bg-red-900 " key={index}>
-            <div className="grid grid-flow-row auto-rows-max gap-1 justify-items-center">
+        <div className="bg-white rounded-md p-3 m-3 justify-items-center" key={index}>
+            <div className="grid m-3">
             <h1>{data?.data().todo}</h1>
             <form onSubmit={handleSubmit}>
                 <label>Add Note</label>
-                <input type="text" value={value} onChange={handleChange}/>
-                <button type="submit">Enter</button>
+                <input className="bg-red-100" type="text" value={value} onChange={handleChange}/>
+                <button className="rounded-full bg-blue-200 p-1" type="submit">Enter</button>
                 </form>
                 <button onClick={deleteTodo}>Delete</button>
                 <div>
