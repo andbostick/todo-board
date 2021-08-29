@@ -43,20 +43,20 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
     
     return (
         <div className="bg-white rounded-md p-3 m-3 justify-items-center" key={index}>
-            <div className="grid m-3">
+            <div className="grid m-3 place-items-center gap-4">
             <h1>{data?.data().todo}</h1>
             <form onSubmit={handleSubmit}>
                 <label>Add Note</label>
-                <input className="bg-red-100" type="text" value={value} onChange={handleChange}/>
-                <button className="rounded-full bg-blue-200 p-1" type="submit">Enter</button>
+                <input className="shadow bg-red-100" type="text" value={value} onChange={handleChange}/>
+                <button className="shadow rounded-full bg-blue-200 p-1" type="submit">Enter</button>
                 </form>
-                <button onClick={deleteTodo}>Delete</button>
-                <div>
+                <button className="shadow" onClick={deleteTodo}>Delete</button>
+                <div className="w-full justify-between grid grid-cols-2 auto-rows-max">
                     {data?.data()?.notes?.map((doc, index) => {
                         return (
                             <>
-                            <h3 key={index}>{doc}</h3>
-                                <button onClick={() => deleteNote(doc)}>delete note</button>
+                            <h3 className="m-5 " key={index}>{doc}</h3>
+                                <button className="text-right" onClick={() => deleteNote(doc)}>delete note</button>
                             </>
                         )
                     })}
