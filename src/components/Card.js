@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import firebase from '../firebase/clientApp'
 import {useDocument} from 'react-firebase-hooks/firestore'
 
@@ -54,10 +54,10 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
                 <div className="w-full justify-between grid grid-cols-2 auto-rows-max">
                     {data?.data()?.notes?.map((doc, index) => {
                         return (
-                            <>
-                            <h3 className="m-5 " key={index}>{doc}</h3>
+                            <div  key={index}>
+                                <h3 className="m-5 ">{doc}</h3>
                                 <button className="text-right" onClick={() => deleteNote(doc)}>delete note</button>
-                            </>
+                            </div>
                         )
                     })}
                 </div>
