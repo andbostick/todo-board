@@ -18,7 +18,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "firebase-admin": "^9.8.0"
   },
   "scripts": {
     "start": "craco start",
@@ -47,6 +48,8 @@
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7",
+    "typescript": "^3.8.0",
+    "firebase-functions-test": "^0.2.0"
   }
 }
