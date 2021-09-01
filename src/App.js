@@ -13,8 +13,6 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 
 
 function App() {
-  
-  const [newTask, setNewTask] = useState('')
 
   const db = firebase.firestore();
     const [user, loading, error] = useAuthState(firebase.auth());
@@ -44,9 +42,9 @@ function App() {
         <SignInScreen />
         </Route>
         <Route path="/">
-        <div className="bg-gray-100 grid m-4">
-            <button onClick={() => firebase.auth().signOut()}>SignOut</button>
-        <Aside newTask={newTask} setNewTask={setNewTask} addTodoDocument={addTodoDocument}/>
+        <div className="bg-gray-100 grid">
+        <button className="text-left bg-white w-16" onClick={() => firebase.auth().signOut()}>SignOut</button>
+            <Aside user={user}addTodoDocument={addTodoDocument}/>
         <Main db={db} todos={todos} user={user}/>
         </div>
         </Route>

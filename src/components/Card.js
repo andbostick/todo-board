@@ -1,6 +1,7 @@
 import React, {useState } from 'react'
 import firebase from '../firebase/clientApp'
-import {useDocument} from 'react-firebase-hooks/firestore'
+import { useDocument } from 'react-firebase-hooks/firestore'
+import { FiXCircle, FiTrash } from "react-icons/fi";
 
 function Card({ list, index, addTodoDocument, todo, id, db }) {
     
@@ -28,6 +29,8 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
         })
     }
 
+    
+
     const handleChange = (e) => {
         setValue(e.target.value)
     }
@@ -42,21 +45,21 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
 
     
     return (
-        <div className="bg-white rounded-md p-3 m-3 justify-items-center" key={index}>
+        <div className="relative bg-white rounded-md p-3 m-3 justify-items-center" key={index}>
+            <button className="absolute -top-1 right-0" onClick={deleteTodo}><FiTrash/></button>
             <div className="grid m-3 place-items-center gap-4">
             <h1>{data?.data().todo}</h1>
             <form onSubmit={handleSubmit}>
                 <label>Add Note</label>
-                <input className="shadow bg-red-100" type="text" value={value} onChange={handleChange}/>
-                <button className="shadow rounded-full bg-blue-200 p-1" type="submit">Enter</button>
+                <input className="shadow m-1" type="text" value={value} onChange={handleChange}/>
+                <button className="shadow m-1  rounded-full bg-blue-200 p-1" type="submit">Enter</button>
                 </form>
-                <button className="shadow" onClick={deleteTodo}>Delete</button>
-                <div className="w-full justify-between grid grid-cols-2 auto-rows-max">
+                <div className="w-full ">
                     {data?.data()?.notes?.map((doc, index) => {
                         return (
-                            <div  key={index}>
+                            <div className="grid grid-cols-2 auto-rows-max" key={index}>
                                 <h3 className="m-5 ">{doc}</h3>
-                                <button className="text-right" onClick={() => deleteNote(doc)}>delete note</button>
+                                <button className="self-center place-self-end" onClick={() => deleteNote(doc)}><FiXCircle/></button>
                             </div>
                         )
                     })}

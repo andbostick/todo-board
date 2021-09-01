@@ -6,7 +6,7 @@ import Auth from '../firebase/Auth';
 function Main({user, todos, db}) {
  
     return (
-        <div className=''>
+        <div className='m-3'>
             
             {!user && <Auth />}
             {user && (
