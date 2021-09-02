@@ -28,7 +28,7 @@ function Form({label, addTodoDocument }) {
 
     return (
         <form className='text-center ' onSubmit={handleSubmit}>
-            <label>{label}</label>
+            <label className="text-2xl">{label}</label>
             <input className="p-1 shadow" type="text" value={value} onChange={handleChange}/>
             <input className="cursor-pointer text-blue-400 rounded shadow p-0.5 m-2" type="submit" value="Submit" />
         </form>

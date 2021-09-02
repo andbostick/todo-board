@@ -45,15 +45,26 @@ function Card({ list, index, addTodoDocument, todo, id, db }) {
 
     
     return (
+        //main container
         <div className="relative bg-white rounded-md p-3 m-3 justify-items-center" key={index}>
+        
+            {/*delete icon*/}
             <button className="absolute -top-1 right-0" onClick={deleteTodo}><FiTrash/></button>
+
+            {/*text container*/}
             <div className="grid m-3 place-items-center gap-4">
+                
+            {/*title*/}
             <h1>{data?.data().todo}</h1>
+            
             <form onSubmit={handleSubmit}>
                 <label>Add Note</label>
                 <input className="shadow m-1" type="text" value={value} onChange={handleChange}/>
                 <button className="shadow m-1  rounded-full bg-blue-200 p-1" type="submit">Enter</button>
                 </form>
+
+                {/*notes from added note form*/}
+
                 <div className="w-full ">
                     {data?.data()?.notes?.map((doc, index) => {
                         return (

@@ -42,7 +42,7 @@ function App() {
         <SignInScreen />
         </Route>
         <Route path="/">
-        <div className="bg-gray-100 grid">
+        <div className="bg-gray-100 grid font-serif">
         <button className="text-left bg-white w-16" onClick={() => firebase.auth().signOut()}>SignOut</button>
             <Aside user={user}addTodoDocument={addTodoDocument}/>
         <Main db={db} todos={todos} user={user}/>
